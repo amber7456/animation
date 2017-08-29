@@ -8,15 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.basedao.dbtool.MapBean;
-import com.bean.animation.AnimationBean; 
+import com.bean.animation.AnimationBean;
 
 @Component
 public class AnimationService {
-	
+
 	@Autowired
 	public AnimationDao animationDao;
 
-	public MapBean getAnimationDetail(String animationId) throws SQLException { 
+	/**
+	 * 获取动画详情
+	 * 
+	 * @param animationId
+	 * @return
+	 * @throws SQLException
+	 */
+	public MapBean getAnimationDetail(String animationId) throws SQLException {
 		return animationDao.getAnimationDetail(animationId);
 	}
 
@@ -36,6 +43,4 @@ public class AnimationService {
 		return animationDao.animationDelete(animation);
 	}
 
-	
-	
 }
