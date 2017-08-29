@@ -26,6 +26,12 @@ public class AnimationDao {
 	@Autowired
 	public DBTools DBTools;
 
+	/**
+	 * 
+	 * @param animationId
+	 * @return
+	 * @throws SQLException
+	 */
 	public MapBean getAnimationDetail(String animationId) throws SQLException {
 		String sql = "SELECT * FROM ANIMATION_INFORMATION T1 WHERE T1.ANIMATION_ID = ? ";
 		List<MapBean> dataList = new ArrayList<MapBean>();
