@@ -41,6 +41,13 @@ public class AnimationDao {
 		return dataList.get(0);
 	}
 
+	/**
+	 * 添加动画
+	 * 
+	 * @param animation
+	 * @return
+	 * @throws IOException
+	 */
 	public int animationAdd(AnimationBean animation) throws IOException {
 		int r = 0;
 		List<Column> cList = new ArrayList<Column>();
@@ -73,10 +80,10 @@ public class AnimationDao {
 				}
 			}
 		}
-		
-		if(haveBDResourceFlag){
+
+		if (haveBDResourceFlag) {
 			cList.add(new Column("HAVE_BD_RESOURCE", "1", ColumnType.VARCHAR));//
-		}else{
+		} else {
 			cList.add(new Column("HAVE_BD_RESOURCE", "0", ColumnType.VARCHAR));//
 		}
 
@@ -170,8 +177,8 @@ public class AnimationDao {
 			cList.add(new Column("have_poster", animation.getHave_poster(), ColumnType.VARCHAR));//
 			have_poster = "NO_UPDATE";
 		}
-		
-		//判断是否有BD资源
+
+		// 判断是否有BD资源
 		boolean haveBDResourceFlag = false;
 		if (animation.getResource_type() != null && animation.getResource_type().length > 0) {
 			for (int i = 0; i < animation.getResource_type().length; i++) {
@@ -181,10 +188,10 @@ public class AnimationDao {
 				}
 			}
 		}
-		
-		if(haveBDResourceFlag){
+
+		if (haveBDResourceFlag) {
 			cList.add(new Column("HAVE_BD_RESOURCE", "1", ColumnType.VARCHAR));//
-		}else{
+		} else {
 			cList.add(new Column("HAVE_BD_RESOURCE", "0", ColumnType.VARCHAR));//
 		}
 
