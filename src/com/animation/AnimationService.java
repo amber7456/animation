@@ -27,10 +27,22 @@ public class AnimationService {
 		return animationDao.getAnimationDetail(animationId);
 	}
 
+	/**
+	 * 
+	 * @param animation
+	 * @return
+	 * @throws IOException
+	 */
 	public int animationAdd(AnimationBean animation) throws IOException {
 		return animationDao.animationAdd(animation);
 	}
 
+	/**
+	 * 
+	 * @param animationId
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<MapBean> getResourceById(String animationId) throws SQLException {
 		return animationDao.getResourceById(animationId);
 	}
