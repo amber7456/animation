@@ -47,6 +47,12 @@ public class AnimationService {
 		return animationDao.getResourceById(animationId);
 	}
 
+	/**
+	 * 
+	 * @param animation
+	 * @return
+	 * @throws IOException
+	 */
 	public int animationEdit(AnimationBean animation) throws IOException {
 		return animationDao.animationEdit(animation);
 	}
