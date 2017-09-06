@@ -22,21 +22,21 @@
 		<table>
 			<tr>
 				<td width="100"><select name="startYear" id="startYear">
-						<c:forEach var="i" begin="1900" end="${nowYear}" step="1">
+						<c:forEach var="i" begin="1980" end="${nowYear}" step="1">
 							<c:choose>
-								<c:when test="${(nowYear + 1900 - i) == (nowYear-5) }">
-									<option value="${nowYear + 1900 - i }" selected="selected">${nowYear + 1900 - i }年</option>
+								<c:when test="${(nowYear + 1980 - i) == (nowYear-5) }">
+									<option value="${nowYear + 1980 - i }" selected="selected">${nowYear + 1980 - i }年</option>
 								</c:when>
 								<c:otherwise>
-									<option value="${nowYear + 1900 - i }">${nowYear + 1900 - i }年</option>
+									<option value="${nowYear + 1980 - i }">${nowYear + 1980 - i }年</option>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 				</select></td>
 				<td>至</td>
 				<td width="100"><select name="endYear" id="endYear">
-						<c:forEach var="i" begin="1900" end="${nowYear}" step="1">
-							<option value="${nowYear + 1900 - i }">${nowYear + 1900 - i }年</option>
+						<c:forEach var="i" begin="1980" end="${nowYear}" step="1">
+							<option value="${nowYear + 1980 - i }">${nowYear + 1980 - i }年</option>
 						</c:forEach>
 				</select></td>
 				<td width="100"><select name="animation_type"

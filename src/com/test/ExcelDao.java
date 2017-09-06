@@ -39,7 +39,7 @@ public class ExcelDao {
 			}
 			System.out.println();
 		}
-
+ 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 小写的mm表示的是分钟
 		// 开启数据库连接
 		// 数据入库

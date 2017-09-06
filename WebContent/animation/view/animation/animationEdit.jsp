@@ -507,9 +507,9 @@ body {
 									anim : 5,
 									icon : 6
 								}, function(index) {
-									var index = parent.layer
+									var indexP = parent.layer
 											.getFrameIndex(window.name); //先得到当前iframe层的索引
-									parent.layer.close(index); //再执行关闭   
+									parent.layer.close(indexP); //再执行关闭   
 									parent.tools.refresh(); // 外部调用，如子页面
 									layer.close(index);
 								});

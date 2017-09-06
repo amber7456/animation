@@ -38,6 +38,10 @@
 	function toStatistics(){
 		pageHref("toStatistics", "POST");
 	}
+	
+	function toDiskManage(){
+		pageHref("toDiskManage", "POST");
+	}
 
 	function index() {
 		var _url_head;
@@ -63,12 +67,13 @@
 						<li class="layui-nav-item"><a href="javascript:toBasicSearch();" id="firstMenu">资源列表</a></li>
 						<li class="layui-nav-item"><a href="javascript:toAdvSearch();">高级检索</a></li>
 						<li class="layui-nav-item"><a href="javascript:toAnimationAdd();">添加</a></li>
-						<li class="layui-nav-item"><a href="javascript:toStatistics();">统计</a></li>
+						<li class="layui-nav-item"><a href="javascript:toStatistics();">资源统计</a></li>
+						<li class="layui-nav-item"><a href="javascript:toDiskManage();">硬盘管理</a></li>
 					</ul>
 				</div>
 			</div>
 			<!-- 中间主要部分 -->
-			<div class="layui-body main" id="main"></div>
+			<div class="layui-body main" id="main" style="padding-bottom: 30px;"></div>
 			<!--  -->
 			<div class="layui-footer" id="footer"></div>
 			<!--  -->
