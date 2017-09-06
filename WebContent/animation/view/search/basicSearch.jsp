@@ -27,8 +27,8 @@
 							<div id="search_select"
 								style="width: 200px; height: 38px; float: left;">
 								<select name="startYear" id="startYear">
-									<c:forEach var="i" begin="1900" end="${nowYear}" step="1">
-										<option value="${nowYear + 1900 - i }">${nowYear + 1900 - i }年</option>
+									<c:forEach var="i" begin="1980" end="${nowYear}" step="1">
+										<option value="${nowYear + 1980 - i }">${nowYear + 1980 - i }年</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -121,13 +121,27 @@
 				element.tabChange("searchTab", searchType);
 			}
 		}
-
 		form.render(); //更新全部，此处只有更新一次，网页上才能正常显示
+
+		element.on('tab(searchTab)', function(data) {
+			//console.log(this); //当前Tab标题所在的原始DOM元素
+			//console.log(data.index); //得到当前Tab的所在下标
+			//console.log(data.elem); //得到当前的Tab大容器
+			//console.log($(this).attr('lay-id'));
+			var tab = $(this).attr('lay-id');
+			if (typeof (tab) == "undefined") {
+				$("#searchTypeHide").val("year");
+			} else {
+				$("#searchTypeHide").val(tab);
+			}
+
+		});
 
 		var _tools = {
 			refresh : function() {
 				var searchType = $("#searchTypeHide").val();
 				if (searchType != "") {
+					console.log(searchType);
 					if (searchType == "name") {
 						basicSearchByName();
 					} else {
