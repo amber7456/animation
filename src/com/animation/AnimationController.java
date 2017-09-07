@@ -20,18 +20,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.basedao.dbtool.MapBean;
 import com.bean.animation.AnimationBean;
+import com.disk.DiskService;
 
 @Controller
 public class AnimationController {
 
 	@Autowired
 	public AnimationService animationService;
-
+	@Autowired
+	public DiskService diskService;
+	
 	@RequestMapping(value = "/toAnimationAdd")
 	public ModelAndView animationDetail(HttpServletRequest request, HttpServletResponse response,
 			HttpSession httpSession, Model model) throws IOException, SQLException {
 		ModelAndView view = null;
 		view = new ModelAndView("animation/animationAdd");
+		List<MapBean> diskList = diskService.getDiskList();
+		model.addAttribute("diskList", diskList);
 		return view;
 	}
 
@@ -111,6 +116,8 @@ public class AnimationController {
 		List<MapBean> resourceList = animationService.getResourceById(animationId);
 		model.addAttribute("animation", animation);
 		model.addAttribute("resourceList", resourceList);
+		List<MapBean> diskList = diskService.getDiskList();
+		model.addAttribute("diskList", diskList);
 		view = new ModelAndView("animation/animationEdit");
 		return view;
 	}

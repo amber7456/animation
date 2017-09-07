@@ -317,10 +317,16 @@ body {
 										</tr>
 										<tr>
 											<td>存储地址</td>
-											<td colspan="5" style="width: 737px;"><input type="text"
+											<td colspan="5" style="width: 737px;"><select
+												name="resource_address">
+													<c:forEach items="${diskList }" var="diskRow">
+														<option value="${diskRow.data['disk_name'] }"
+															${ row.data['RESOURCE_ADDRESS'] == diskRow.data['disk_name'] ? 'selected="selected"':'' }>${diskRow.data['disk_name'] }</option>
+													</c:forEach>
+											</select> <%-- 	<input type="text"
 												class="layui-input" style="width: 750px;"
 												name="resource_address"
-												value="${row.data['RESOURCE_ADDRESS']}" /></td>
+												value="${row.data['RESOURCE_ADDRESS']}" /> --%></td>
 										</tr>
 										<tr>
 											<td valign="top">备注</td>
@@ -403,9 +409,14 @@ body {
 					</tr>
 					<tr>
 						<td>存储地址</td>
-						<td colspan="5" style="width: 737px;"><input type="text"
+						<td colspan="5" style="width: 737px;"><select
+							name="resource_address">
+								<c:forEach items="${diskList }" var="row">
+									<option value="${row.data['disk_name'] }">${row.data['disk_name'] }</option>
+								</c:forEach>
+						</select> <!-- <input type="text"
 							class="layui-input" style="width: 750px;" name="resource_address"
-							value="" /></td>
+							value="" /> --></td>
 					</tr>
 					<tr>
 						<td valign="top">备注</td>

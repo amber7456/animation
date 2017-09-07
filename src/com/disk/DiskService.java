@@ -18,6 +18,10 @@ public class DiskService {
 	public List<MapBean> getDiskList(DiskBean diskBean) throws SQLException {
 		return diskDao.getDiskList(diskBean);
 	}
+	
+	public List<MapBean> getDiskList() throws SQLException {
+		return diskDao.getDiskList();
+	}
 
 	public int diskAdd(DiskBean diskBean) { 
 		return diskDao.diskAdd(diskBean);
@@ -30,5 +34,7 @@ public class DiskService {
 	public int diskEdit(DiskBean diskBean) { 
 		return  diskDao.diskEdit(diskBean);
 	}
+
+	
 
 }

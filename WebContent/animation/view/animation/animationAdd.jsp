@@ -224,8 +224,14 @@
 				</tr>
 				<tr>
 					<td>存储地址</td>
-					<td colspan="5" style="width: 737px;"><input type="text"
-						class="layui-input" style="" name="resource_address" value="" /></td>
+					<td colspan="5" style="width: 737px;"><select
+						name="resource_address">
+							<c:forEach items="${diskList }" var="row">
+								<option value="${row.data['disk_name'] }">${row.data['disk_name'] }</option>
+							</c:forEach>
+					</select> <!-- <input type="text"
+						class="layui-input" style="" name="resource_address" value="" /> -->
+					</td>
 				</tr>
 				<tr>
 					<td valign="top">备注</td>
@@ -378,5 +384,4 @@
 		var obj = document.getElementById('previewImg');
 		obj.outerHTML = obj.outerHTML;
 	}
-
 </script>
