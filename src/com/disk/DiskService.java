@@ -23,4 +23,12 @@ public class DiskService {
 		return diskDao.diskAdd(diskBean);
 	}
 
+	public List<MapBean> getDiskById(String disk_id) throws SQLException {
+		return diskDao.getDiskById(disk_id);
+	}
+
+	public int diskEdit(DiskBean diskBean) { 
+		return  diskDao.diskEdit(diskBean);
+	}
+
 }
