@@ -1,10 +1,19 @@
 package com.bean.disk;
 
 public class DiskBean {
+	private String disk_id;//
 	private String disk_name;//
 	private String disk_capacity;//
 	private String disk_state;//
 	private String is_full;//
+
+	public String getDisk_id() {
+		return disk_id;
+	}
+
+	public void setDisk_id(String disk_id) {
+		this.disk_id = disk_id;
+	}
 
 	public String getDisk_name() {
 		return disk_name;
@@ -40,8 +49,8 @@ public class DiskBean {
 
 	@Override
 	public String toString() {
-		return "DiskBean [disk_name=" + disk_name + ", disk_capacity=" + disk_capacity + ", disk_state=" + disk_state
-				+ ", is_full=" + is_full + "]";
+		return "DiskBean [disk_id=" + disk_id + ", disk_name=" + disk_name + ", disk_capacity=" + disk_capacity
+				+ ", disk_state=" + disk_state + ", is_full=" + is_full + "]";
 	}
 
 }

@@ -4,11 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/animation/js/imgcontroller.js"></script>
-<script type="text/javascript"
 	src="${pageContext.request.contextPath}/animation/js/scrolltopcontrol.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/animation/css/basicSearch.css">
+
 <style>
 .div-diskAdd td {
 	padding: 0px 5px 5px 5px;
@@ -155,15 +152,7 @@
 
 		var _tools = {
 			refresh : function() {
-				/* var searchType = $("#searchTypeHide").val();
-				if (searchType != "") {
-					console.log(searchType);
-					if (searchType == "name") {
-						basicSearchByName();
-					} else {
-						basicSearchByYear();
-					}
-				} */
+				diskSearch();
 			}
 		}
 
