@@ -40,7 +40,7 @@ public class DiskDao {
 
 	public List<MapBean> getDiskList() throws SQLException {
 		List<MapBean> dataList = new ArrayList<MapBean>();
-		dataList = DBTools.table("disk_information").order("is_full ").select();
+		dataList = DBTools.table("disk_information").order("disk_name ").select();
 		return dataList;
 	}
 
