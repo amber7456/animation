@@ -14,9 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.basedao.dbtool.ColumnType;
 import com.basedao.dbtool.MapBean;
+import com.basedao.dbtool.Param;
 import com.bean.search.SearchBean;
-import com.bean.yearlist.YearListBean;
+import com.bean.yearlist.AnimationYearListBean;
 import com.disk.DiskService;
 import com.utils.CommonUtils;
 
@@ -51,7 +53,7 @@ public class SearchController {
 		searchBean.setSearchType("year");
 
 		List<MapBean> animationList = searchService.searchAnimationByYear(searchBean);
-		YearListBean yearListBean = searchService.clearUp(animationList, searchBean);
+		AnimationYearListBean yearListBean = searchService.clearUp(animationList, searchBean);
 
 		model.addAttribute("YearList", yearListBean);//
 		model.addAttribute("searchBean", searchBean);
@@ -75,7 +77,7 @@ public class SearchController {
 			Model model, SearchBean searchBean) throws IOException, SQLException {
 		ModelAndView view = null;
 
-		YearListBean yearListBean = null;
+		AnimationYearListBean yearListBean = null;
 		if (searchBean.getSearchType().equals("name")) {
 			List<MapBean> animationList = searchService.searchAnimationByName(searchBean);
 			yearListBean = searchService.clearUp(animationList, searchBean);
@@ -96,16 +98,7 @@ public class SearchController {
 	public ModelAndView toAdvSearch(HttpServletRequest request, HttpServletResponse response, HttpSession httpSession,
 			Model model) throws IOException, SQLException {
 		ModelAndView view = null;
-		view = new ModelAndView("search/advSearch");
-		// String nowYear = CommonUtils.getNowStr("YYYY");
-		// model.addAttribute("nowYear", nowYear);
-		// SearchBean searchBean = new SearchBean();
-		// searchBean.setAnimation_name("");
-		// searchBean.setAnimation_type("ALL");
-		// searchBean.setEndYear(nowYear);
-		// searchBean.setStartYear(nowYear);
-		// model.addAttribute("searchBean", searchBean);// 初始化查询条件
-
+		view = new ModelAndView("search/advSearch"); 
 		List<MapBean> diskList = diskService.getDiskList();
 		model.addAttribute("diskList", diskList);// 初始化查询条件
 		return view;
@@ -116,9 +109,9 @@ public class SearchController {
 			HttpSession httpSession, Model model) throws IOException, SQLException {
 		ModelAndView view = null;
 		view = new ModelAndView("search/advSearch_data");
-		System.out.println(searchBean);
-		List<MapBean> animationList = searchService.advSearch(searchBean);
-		model.addAttribute("animationList", animationList);
+		List<AnimationYearListBean> animationYearList = searchService.advSearch(searchBean);
+		model.addAttribute("animationYearList", animationYearList);
+		model.addAttribute("searchBean", searchBean);
 		return view;
 	}
 

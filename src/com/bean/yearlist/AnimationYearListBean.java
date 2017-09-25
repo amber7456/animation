@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.basedao.dbtool.MapBean;
 
-public class YearListBean {
+public class AnimationYearListBean {
 	private String year;
 	private List<String> yearList;
 	private Map<String, String> count;

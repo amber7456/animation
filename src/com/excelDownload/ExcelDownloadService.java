@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.basedao.dbtool.MapBean;
 import com.bean.search.SearchBean;
-import com.bean.yearlist.YearListBean;
+import com.bean.yearlist.AnimationYearListBean;
 
 @Component
 public class ExcelDownloadService {
@@ -33,9 +33,9 @@ public class ExcelDownloadService {
 		return searchDao.advSearch(searchBean);
 	}
 
-	public YearListBean clearUp(List<MapBean> animationList, SearchBean searchBean) throws SQLException {
+	public AnimationYearListBean clearUp(List<MapBean> animationList, SearchBean searchBean) throws SQLException {
 
-		YearListBean y = new YearListBean();
+		AnimationYearListBean y = new AnimationYearListBean();
 		List<MapBean> fuyuList = new ArrayList<MapBean>();
 		for (int i = 0; i < animationList.size(); i++) {
 			if (animationList.get(i).getData().get("ANIMATION_TYPE").equals("1")) {

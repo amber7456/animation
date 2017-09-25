@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.basedao.dbtool.MapBean;
 import com.bean.search.SearchBean;
-import com.bean.yearlist.YearListBean;
+import com.bean.yearlist.AnimationYearListBean;
 
 @Component
 public class SearchService {
@@ -29,13 +29,37 @@ public class SearchService {
 		return searchDao.searchAnimationByYear(searchBean);
 	}
 
-	public List<MapBean> advSearch(SearchBean searchBean) throws SQLException {
-		return searchDao.advSearch(searchBean);
+	public List<AnimationYearListBean> advSearch(SearchBean searchBean) throws SQLException {
+
+		List<AnimationYearListBean> animationYearList = new ArrayList<AnimationYearListBean>();
+		List<MapBean> dataList = searchDao.advSearch(searchBean);
+
+		HashSet<String> yearSet = new HashSet<String>();
+		for (int i = 0; i < dataList.size(); i++) {
+			String year = dataList.get(i).getData().get("ANIMATION_BROADCAST_TIME").substring(0, 4);
+			yearSet.add(year);
+		}
+		List<String> yearList = new ArrayList<>(yearSet);
+		Collections.sort(yearList);
+		for (int i = 0; i < yearList.size(); i++) {
+			AnimationYearListBean animationYearListBean = new AnimationYearListBean();
+			animationYearListBean.setYear(yearList.get(i));
+			List<MapBean> animationList = new ArrayList<MapBean>();
+			for (int j = 0; j < dataList.size(); j++) {
+				if (yearList.get(i).equals(dataList.get(j).getData().get("ANIMATION_BROADCAST_TIME").substring(0, 4))) {
+					animationList.add(dataList.get(j));
+				}
+			}
+			animationYearListBean.setAnimationList(animationList);
+			animationYearList.add(animationYearListBean);
+		}
+
+		return animationYearList;
 	}
 
-	public YearListBean clearUp(List<MapBean> animationList, SearchBean searchBean) throws SQLException {
+	public AnimationYearListBean clearUp(List<MapBean> animationList, SearchBean searchBean) throws SQLException {
 
-		YearListBean y = new YearListBean();
+		AnimationYearListBean y = new AnimationYearListBean();
 		List<MapBean> fuyuList = new ArrayList<MapBean>();
 		for (int i = 0; i < animationList.size(); i++) {
 			if (animationList.get(i).getData().get("ANIMATION_TYPE").equals("1")) {

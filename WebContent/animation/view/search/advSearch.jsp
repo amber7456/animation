@@ -130,14 +130,25 @@
 			<input type="hidden" id="animation_source" name="animation_source"
 				value="ALL">
 		</div>
+				<div style="display: block; margin: 5px 0px; width: 400px;">
+
+			<div class="search-item-click noselect">
+				<span onclick="searchClick(this)" id="ALL">全部资源</span>
+			</div>
+			<div class="search-item noselect">
+				<span onclick="searchClick(this)" id="0">普通资源</span>
+			</div>
+			<div class="search-item noselect">
+				<span onclick="searchClick(this)" id="1">BD资源</span>
+			</div>
+			<input type="hidden" id="isBD" name="isBD"
+				value="ALL">
+		</div>
+		
 		<div style="display: block; margin: 5px 0px;">
 			<div style="display: inline-block;">
 				<table>
-					<tr>
-						<td><div class="search-checkBox noselect"
-								onclick="checkBoxClick(this)" id="BD">
-								<span>BD资源</span><input type="hidden" name="isBD" value="0" />
-							</div></td>
+					<tr> 
 						<td><input class="layui-input" id="yearRange" name="yearRange"
 							placeholder="年范围" type="text" readonly="readonly"></td>
 						<td width="200"><select name="disk_name" id="">
@@ -344,23 +355,4 @@
 		});
 	}
 
-	/* var startYear = $("#startYearHide").val();
-	if (startYear != "") {
-		$("#startYear").val(startYear);
-	}
-
-	var endYear = $("#endYearHide").val();
-	if (endYear != "") {
-		$("#endYear").val(endYear);
-	}
-
-	var animationType = $("#animationTypeHide").val();
-	if (animationType != "") {
-		$("#animationType").val(animationType);
-	}
-
-	var animationName = $("#animationNameHide").val();
-	if (animationName != "") {
-		$("#animationName").val(animationName);
-	} */
 </script>

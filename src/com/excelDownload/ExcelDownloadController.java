@@ -49,20 +49,20 @@ public class ExcelDownloadController {
 		CommonUtils.downLoadFile(request, response, file.getName(), file);
 	}
 
-	@RequestMapping(value = "/excelDownloadAdv")
-	public void excelDownloadAdv(HttpServletRequest request, HttpServletResponse response, Model model,
-			SearchBean searchBean) throws Exception {
-		List<MapBean> animationList = searchService.advSearch(searchBean);
-		List<MapBean> resourceList = searchService.searchResourceByAdv(searchBean);
-		StringBuffer fileName = new StringBuffer(searchBean.getStartYear() + "年至" + searchBean.getEndYear() + "年"
-				+ CommonUtils.getValueByKey("TYPE" + searchBean.getAnimation_type()));
-		if (searchBean.getAnimation_name() != null && searchBean.getAnimation_name().trim().length() > 0) {
-			fileName.append("检索'" + searchBean.getAnimation_name() + "'");
-		}
-		fileName.append("列表.xls");
-		File file = createEXCEL(fileName.toString(), animationList, resourceList);
-		CommonUtils.downLoadFile(request, response, file.getName(), file);
-	}
+//	@RequestMapping(value = "/excelDownloadAdv")
+//	public void excelDownloadAdv(HttpServletRequest request, HttpServletResponse response, Model model,
+//			SearchBean searchBean) throws Exception {
+//		List<MapBean> animationList = searchService.advSearch(searchBean);
+//		List<MapBean> resourceList = searchService.searchResourceByAdv(searchBean);
+//		StringBuffer fileName = new StringBuffer(searchBean.getStartYear() + "年至" + searchBean.getEndYear() + "年"
+//				+ CommonUtils.getValueByKey("TYPE" + searchBean.getAnimation_type()));
+//		if (searchBean.getAnimation_name() != null && searchBean.getAnimation_name().trim().length() > 0) {
+//			fileName.append("检索'" + searchBean.getAnimation_name() + "'");
+//		}
+//		fileName.append("列表.xls");
+//		File file = createEXCEL(fileName.toString(), animationList, resourceList);
+//		CommonUtils.downLoadFile(request, response, file.getName(), file);
+//	}
 
 	// 生成excel文件
 	public File createEXCEL(String fileName, List<MapBean> animationList, List<MapBean> resourceList) {

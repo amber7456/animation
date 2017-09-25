@@ -42,16 +42,41 @@ public class SearchDao {
 	public List<MapBean> advSearch(SearchBean searchBean) throws SQLException {
 		List<MapBean> dataList = new ArrayList<MapBean>();
 		List<Param> pList = new ArrayList<Param>();
-		StringBuffer sql = new StringBuffer(
-				"DATE_FORMAT(ANIMATION_BROADCAST_TIME, '%Y') >= ? AND DATE_FORMAT(ANIMATION_BROADCAST_TIME, '%Y') <= ? ");
+		// StringBuffer sql = new StringBuffer(
+		// "DATE_FORMAT(ANIMATION_BROADCAST_TIME, '%Y') >= ? AND
+		// DATE_FORMAT(ANIMATION_BROADCAST_TIME, '%Y') <= ? ");
+		// pList.add(new Param(searchBean.getStartYear(), ColumnType.VARCHAR));
+		// pList.add(new Param(searchBean.getEndYear(), ColumnType.VARCHAR));
 
-		pList.add(new Param(searchBean.getStartYear(), ColumnType.VARCHAR));
-		pList.add(new Param(searchBean.getEndYear(), ColumnType.VARCHAR));
+		StringBuffer sql = new StringBuffer(" 1 = 1 ");
 
 		if (!searchBean.getAnimation_type().equals("ALL")) {
 			sql.append(" AND ANIMATION_TYPE = ? ");
 			pList.add(new Param(searchBean.getAnimation_type(), ColumnType.VARCHAR));
 		}
+
+		if (!searchBean.getAnimation_source().equals("ALL")) {
+			sql.append(" AND ANIMATION_SOURCE = ? ");
+			pList.add(new Param(searchBean.getAnimation_source(), ColumnType.VARCHAR));
+		}
+
+		if (!searchBean.getIsBD().equals("ALL")) {
+			sql.append(" AND HAVE_BD_RESOURCE = ? ");
+			pList.add(new Param(searchBean.getIsBD(), ColumnType.VARCHAR));
+		}
+
+		if (searchBean.getYearRange() != null && !searchBean.getYearRange().equals("")) {
+			sql.append(
+					" AND DATE_FORMAT(ANIMATION_BROADCAST_TIME, '%Y') >= ? AND DATE_FORMAT(ANIMATION_BROADCAST_TIME, '%Y') <= ? ");
+			pList.add(new Param(searchBean.getYearRange().split(" - ")[0].replace("年", ""), ColumnType.VARCHAR));
+			pList.add(new Param(searchBean.getYearRange().split(" - ")[1].replace("年", ""), ColumnType.VARCHAR));
+		}
+
+//		if (!searchBean.getDisk_name().equals("ALL")) {
+//			sql.append(" AND ANIMATION_TYPE = ? ");
+//			pList.add(new Param(searchBean.getAnimation_type(), ColumnType.VARCHAR));
+//		}
+ 
 
 		if (searchBean.getAnimation_name() != null && searchBean.getAnimation_name().trim().length() > 0) {
 			sql.append(" AND ANIMATION_NAME LIKE ? ");
