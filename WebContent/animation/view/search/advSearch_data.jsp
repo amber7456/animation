@@ -13,8 +13,10 @@
 				<c:set var="dataFlag" scope="page" value="0" />
 
 				<c:forEach items="${row.animationList}" var="animation">
-					<c:if test="${animation.data['ANIMATION_TYPE'] == i}">
-						<c:set var="dataFlag" scope="page" value="1" />
+					<c:if test="${ dataFlag  == 0}">
+						<c:if test="${animation.data['ANIMATION_TYPE'] == i}">
+							<c:set var="dataFlag" scope="page" value="1" />
+						</c:if>
 					</c:if>
 				</c:forEach>
 
