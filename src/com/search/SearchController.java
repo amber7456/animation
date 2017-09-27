@@ -14,9 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.basedao.dbtool.ColumnType;
 import com.basedao.dbtool.MapBean;
-import com.basedao.dbtool.Param;
 import com.bean.search.SearchBean;
 import com.bean.yearlist.AnimationYearListBean;
 import com.disk.DiskService;
