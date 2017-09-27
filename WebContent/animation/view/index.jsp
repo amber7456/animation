@@ -13,10 +13,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/animation/layui/css/layui.css" media="all">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/animation/css/system.css">
 <script type="text/javascript">
-	layui.use([ 'element', 'layer', 'form' ], function() { //独立版的layer无需执行这一句
+	layui.use([ 'element', 'layer' ], function() { //独立版的layer无需执行这一句
 		var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
 		var layer = layui.layer; //独立版的layer无需执行这一句
-		var form = layui.form;
 		
 		layer.ready(function() {
 			document.getElementById("firstMenu").click();//点击菜单第一项

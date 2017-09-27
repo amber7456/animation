@@ -10,6 +10,9 @@
 		style="min-width: 900px; display: inline-block; margin-bottom: 80px;">
 		<c:set var="length" scope="page"
 			value="${fn:length(animationYearList)}" />
+		<c:set var="lastYear" scope="page"
+			value="${animationYearList[length-1].year}" />
+
 		<c:forEach items="${animationYearList}" var="row">
 			<div class="animation-year" style="margin-top: 10px;">
 				<span>${row.year}年</span>
@@ -39,6 +42,11 @@
 						<c:if test="${animation.data['ANIMATION_TYPE'] == i}">
 							<c:set var="count" scope="page" value="${count +1 }" />
 							<div class="animation">
+								<c:if test="${animation.data['HAVE_BD_RESOURCE'] == 1}">
+									<div
+										style="position: absolute; width: 10px; height: 10px; color: #01AAED; background-color: #01AAED; border-radius: 5px; top: 5px; left: 5px;">
+									</div>
+								</c:if>
 								<div class="animation-info"
 									onclick="showAnimationDetail('${animation.data['ANIMATION_ID']}')">
 									<div class="animation-poster">
@@ -93,10 +101,8 @@
 						<hr class="layui-bg-blue">
 					</c:if>
 				</c:if>
-
-
 			</c:forEach>
-			<c:if test="${animationYearList[length-1].year != row.year}">
+			<c:if test="${lastYear != row.year}">
 				<hr class="layui-bg-red" />
 			</c:if>
 		</c:forEach>
