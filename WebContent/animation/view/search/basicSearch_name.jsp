@@ -39,6 +39,11 @@
 							<fmt:formatDate var="year" pattern="yyyy" value="${date}" />
 							<c:if test="${year == y }">
 								<div class="animation">
+									<c:if test="${row.data['HAVE_BD_RESOURCE'] == 1}">
+										<div
+											style="position: absolute; width: 10px; height: 10px; color: #01AAED; background-color: #01AAED; border-radius: 5px; top: 5px; left: 5px;">
+										</div>
+									</c:if>
 									<div class="animation-info"
 										onclick="showAnimationDetail('${row.data['ANIMATION_ID']}')">
 										<div class="animation-poster">

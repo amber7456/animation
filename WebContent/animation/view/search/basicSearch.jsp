@@ -26,6 +26,8 @@
 						<div class="div-search" style="width: 500px; float: left;">
 							<div id="search_select"
 								style="width: 200px; height: 38px; float: left;">
+								<!-- <input class="layui-input" id="startYear1" name="startYear1"
+									type="text"> -->
 								<select name="startYear" id="startYear">
 									<c:forEach var="i" begin="1980" end="${nowYear}" step="1">
 										<option value="${nowYear + 1980 - i }">${nowYear + 1980 - i }年</option>
@@ -107,9 +109,10 @@
 		});
 	});
 
-	layui.use([ 'element', 'form' ], function() {
+	layui.use([ 'element', 'form', 'laydate' ], function() {
 		var element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 		var form = layui.form;
+		var laydate = layui.laydate;
 
 		//回显tab
 		var searchType = $("#searchTypeHide").val();
@@ -122,6 +125,21 @@
 			}
 		}
 		form.render(); //更新全部，此处只有更新一次，网页上才能正常显示
+
+		var myDate = new Date();
+		var nowYear = myDate.getFullYear();
+
+		//年选择器
+		/* laydate.render({
+			elem : '#startYear1',
+			type : 'year',
+			//format : 'yyyy年',
+			//value : '2017',
+			//max : '2017' ,
+			theme : '#5FB878',
+			//btns : [ 'now', 'confirm' ],
+			showBottom : false
+		}); */
 
 		element.on('tab(searchTab)', function(data) {
 			//console.log(this); //当前Tab标题所在的原始DOM元素

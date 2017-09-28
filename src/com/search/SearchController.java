@@ -81,6 +81,7 @@ public class SearchController {
 			yearListBean = searchService.clearUp(animationList, searchBean);
 			view = new ModelAndView("search/basicSearch_name");
 		} else {
+			searchBean.setStartYear(searchBean.getStartYear().substring(0, 4));
 			List<MapBean> animationList = searchService.searchAnimationByYear(searchBean);
 			yearListBean = searchService.clearUp(animationList, searchBean);
 			view = new ModelAndView("search/basicSearch_year");
