@@ -75,7 +75,7 @@
 				</c:if>
 			</c:forEach>
 			<c:if test="${i != 7 }">
-				<hr class="layui-bg-green" />
+				<hr class="layui-bg-blue" />
 			</c:if>
 		</c:forEach>
 	</c:if>

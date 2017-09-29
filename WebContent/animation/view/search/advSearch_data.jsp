@@ -109,7 +109,7 @@
 	</div>
 </fmt:bundle>
 <script type="text/javascript">
-	$(document).ready(function() {
+	  $(document).ready(function() {
 		$('.edit-div').click(function(event) {
 			//取消事件冒泡  
 			event.stopPropagation();
@@ -143,5 +143,5 @@
 		// }
 		});  
 
-	})
+	})  
 </script>

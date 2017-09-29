@@ -13,7 +13,7 @@
 	<div class="layui-tab layui-tab-brief" style="min-width: 900px;"
 		lay-filter="searchTab">
 		<ul class="layui-tab-title">
-			<li lay-id="year">按年查询</li>
+			<li lay-id="year" class="layui-this">按年查询</li>
 			<li lay-id="name">按名称查询</li>
 		</ul>
 		<div class="layui-tab-content">
@@ -28,6 +28,7 @@
 								style="width: 200px; height: 38px; float: left;">
 								<!-- <input class="layui-input" id="startYear1" name="startYear1"
 									type="text"> -->
+								<!--  -->
 								<select name="startYear" id="startYear">
 									<c:forEach var="i" begin="1980" end="${nowYear}" step="1">
 										<option value="${nowYear + 1980 - i }">${nowYear + 1980 - i }年</option>
@@ -116,29 +117,23 @@
 
 		//回显tab
 		var searchType = $("#searchTypeHide").val();
-		if (searchType != "") {
-			if (searchType == "name") {
-				$("#animation_name").val($("#animation_nameHide").val());
-				element.tabChange("searchTab", searchType);
-			} else {
-				element.tabChange("searchTab", searchType);
-			}
-		}
+		element.tabChange("searchTab", searchType);
+
 		form.render(); //更新全部，此处只有更新一次，网页上才能正常显示
 
 		var myDate = new Date();
 		var nowYear = myDate.getFullYear();
 
-		//年选择器
+		// 年选择器
 		/* laydate.render({
 			elem : '#startYear1',
 			type : 'year',
-			//format : 'yyyy年',
-			//value : '2017',
-			//max : '2017' ,
+			format : 'yyyy年',
+			value : '2017年',
+			max : '2017年' ,
 			theme : '#5FB878',
-			//btns : [ 'now', 'confirm' ],
-			showBottom : false
+			btns : [ 'now', 'confirm' ]
+			//,showBottom : false
 		}); */
 
 		element.on('tab(searchTab)', function(data) {
@@ -177,17 +172,18 @@
 		$("#animation_name").val($.trim($("#animation_name").val())); // 去空格
 		var animation_name = $("#animation_name").val();
 		if (animation_name == "") {
-
-			layer.alert('请输入查询条件！', {
-				closeBtn : 0,
-				offset : '200px',
-				anim : 5,
-				icon : 0
-			}, function(index) {
-				$("#animation_name").focus();
-				layer.close(index);
+			layui.use([ 'layer' ], function() { // 独立版的layer无需执行这一句
+				var layer = layui.layer; // 独立版的layer无需执行这一句
+				layer.alert('请输入查询条件！', {
+					closeBtn : 0,
+					offset : '200px',
+					anim : 5,
+					icon : 0
+				}, function(index) {
+					$("#animation_name").focus();
+					layer.close(index);
+				});
 			});
-
 			return false;
 		} else {
 			formSubmit("basicSearchByNameForm", "name_date");

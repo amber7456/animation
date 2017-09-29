@@ -130,27 +130,27 @@
 			<input type="hidden" id="animation_source" name="animation_source"
 				value="ALL">
 		</div>
-				<div style="display: block; margin: 5px 0px; width: 400px;">
+		<div style="display: block; margin: 5px 0px; width: 400px;">
 
 			<div class="search-item-click noselect">
 				<span onclick="searchClick(this)" id="ALL">全部资源</span>
 			</div>
-			<div class="search-item noselect">
+			<!-- <div class="search-item noselect">
 				<span onclick="searchClick(this)" id="0">普通资源</span>
-			</div>
+			</div> -->
 			<div class="search-item noselect">
 				<span onclick="searchClick(this)" id="1">BD资源</span>
 			</div>
-			<input type="hidden" id="isBD" name="isBD"
-				value="ALL">
+			<input type="hidden" id="isBD" name="isBD" value="ALL">
 		</div>
-		
+
 		<div style="display: block; margin: 5px 0px;">
 			<div style="display: inline-block;">
 				<table>
-					<tr> 
-						<td><input class="layui-input" id="yearRange" name="yearRange"
-							placeholder="年范围" type="text" readonly="readonly"></td>
+					<tr>
+						<td><input class="layui-input" id="yearRange"
+							name="yearRange" placeholder="年范围" type="text"
+							readonly="readonly"></td>
 						<td width="200"><select name="disk_name" id="">
 								<option value="ALL">全部硬盘</option>
 								<c:forEach items="${diskList}" var="row">
@@ -354,5 +354,4 @@
 			//不删除
 		});
 	}
-
 </script>

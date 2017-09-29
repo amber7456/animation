@@ -147,7 +147,7 @@ body {
 								<tr>
 									<td style="width: 60px;">动画名称</td>
 									<td colspan="3"><input type="text" class="layui-input"
-										name="animation_name"
+										name="animation_name" lay-verify="animation_name"
 										value="${animation.data['ANIMATION_NAME']}" /></td>
 									<td></td>
 									<td></td>
@@ -460,6 +460,15 @@ body {
 
 				layer.ready(function() {
 					$("body").css("display", "block");
+				});
+
+				//自定义验证规则
+				form.verify({
+					animation_name : function(value) {
+						if (value.trim().length < 1) {
+							return '动画名称不能为空';
+						}
+					}
 				});
 
 				window.addResourceTable = function() {

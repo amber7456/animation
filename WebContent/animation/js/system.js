@@ -2,79 +2,88 @@ var divBody = "main";
 
 function pageHref(url, type) {
 
-	var loadIndex = layer.load(1, {
-		shade : [ 0.6, '#000' ]
+	layui.use([ 'layer' ], function() { // 独立版的layer无需执行这一句
+		var layer = layui.layer; // 独立版的layer无需执行这一句
+		var loadIndex = layer.load(1, {
+			shade : [ 0.6, '#000' ]
+		});
+		$.ajax({
+			url : url,
+			type : type,
+			dataType : 'html',
+			async : false,
+			success : function(data) {
+				layer.close(loadIndex);
+				$("#" + divBody).html("");
+				$("#" + divBody).html(data);
+			},
+			error : function(data) {
+				layer.close(loadIndex);
+				$("#" + divBody).html("");
+				$("#" + divBody).html(data.responseText);
+			}
+		});
 	});
-	$.ajax({
-		url : url,
-		type : type,
-		dataType : 'html',
-		async : false,
-		success : function(data) {
-			layer.close(loadIndex);
-			$("#" + divBody).html("");
-			$("#" + divBody).html(data);
-		},
-		error : function(data) {
-			layer.close(loadIndex);
-			$("#" + divBody).html("");
-			$("#" + divBody).html(data.responseText);
-		}
-	});
-
 };
 
 function pageSubmit(formId) {
-	var loadIndex;
-	loadIndex = layer.load(1, {
-		shade : [ 0.6, '#000' ]
-	});
-	// 取 action 地址
-	var url = $("#" + formId).attr("action");
-	$.ajax({
-		url : url,
-		type : 'post',
-		data : $('#' + formId).serialize(),
-		dataType : 'html',
 
-		async : false,
-		success : function(data) {
-			layer.close(loadIndex);
-			$("#" + divBody).html("");
-			$("#" + divBody).html(data);
-		},
-		error : function(data) {
-			layer.close(loadIndex);
-			$("#" + divBody).html("");
-			$("#" + divBody).html(data.responseText);
-		}
+	layui.use([ 'layer' ], function() { // 独立版的layer无需执行这一句
+		var layer = layui.layer; // 独立版的layer无需执行这一句
+		var loadIndex;
+		loadIndex = layer.load(1, {
+			shade : [ 0.6, '#000' ]
+		});
+		// 取 action 地址
+		var url = $("#" + formId).attr("action");
+		$.ajax({
+			url : url,
+			type : 'post',
+			data : $('#' + formId).serialize(),
+			dataType : 'html',
+			async : false,
+			success : function(data) {
+				layer.close(loadIndex);
+				$("#" + divBody).html("");
+				$("#" + divBody).html(data);
+			},
+			error : function(data) {
+				layer.close(loadIndex);
+				$("#" + divBody).html("");
+				$("#" + divBody).html(data.responseText);
+			}
+		});
 	});
 };
 
 function formSubmit(formId, div) {
-	var loadIndex;
-	loadIndex = layer.load(1, {
-		shade : [ 0.6, '#000' ]
+
+	layui.use([ 'layer' ], function() { // 独立版的layer无需执行这一句
+		var layer = layui.layer; // 独立版的layer无需执行这一句
+		var loadIndex = layer.load(1, {
+			shade : [ 0.6, '#000' ]
+		});
+		// 取 action 地址
+		var url = $("#" + formId).attr("action");
+		$.ajax({
+			url : url,
+			type : 'post',
+			data : $('#' + formId).serialize(),
+			dataType : 'html',
+			async : false,
+			success : function(data) {
+				layer.close(loadIndex);
+				$("#" + div).html("");
+				$("#" + div).html(data);
+			},
+			error : function(data) {
+				layer.close(loadIndex);
+				$("#" + div).html("");
+				$("#" + div).html(data.responseText);
+			}
+		});
 	});
-	// 取 action 地址
-	var url = $("#" + formId).attr("action");
-	$.ajax({
-		url : url,
-		type : 'post',
-		data : $('#' + formId).serialize(),
-		dataType : 'html',
-		async : false,
-		success : function(data) {
-			layer.close(loadIndex);
-			$("#" + div).html("");
-			$("#" + div).html(data);
-		},
-		error : function(data) {
-			layer.close(loadIndex);
-			$("#" + div).html("");
-			$("#" + div).html(data.responseText);
-		}
-	});
+
 };
 
 function getNowFormatDate() {

@@ -95,7 +95,8 @@
 							<tr>
 								<td style="width: 60px;">动画名称</td>
 								<td colspan="3"><input type="text" class="layui-input"
-									name="animation_name" value="" autocomplete="off" /></td>
+									lay-verify="animation_name" name="animation_name" value=""
+									autocomplete="off" /></td>
 								<td></td>
 								<td></td>
 							</tr>
@@ -272,6 +273,15 @@
 				layer.ready(function() {
 					$("#animation_broadcast_time").val(getNowFormatDate());//设置初试时间 
 					addResourceTable(form);
+				});
+
+				//自定义验证规则
+				form.verify({
+					animation_name : function(value) {
+						if (value.trim().length < 1) {
+							return '动画名称不能为空';
+						}
+					}
 				});
 
 				window.addResourceTable = function() {
