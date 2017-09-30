@@ -106,26 +106,39 @@ public class SearchDao {
 		return dataList;
 	}
 
-	// SELECT T2.* FROM ANIMATION_INFORMATION T1 JOIN ANIMATION_RESOURCE T2 ON
-	// T1.ANIMATION_ID = T2.ANIMATION_ID
-	// WHERE DATE_FORMAT(ANIMATION_BROADCAST_TIME, '%Y') >= '2010' AND
-	// DATE_FORMAT(ANIMATION_BROADCAST_TIME, '%Y') <= '2017'
-	// AND ANIMATION_TYPE = 1 AND ANIMATION_NAME LIKE '%A%' ORDER BY
-	// ANIMATION_BROADCAST_TIME
-
 	public List<MapBean> searchResourceByAdv(SearchBean searchBean) throws SQLException {
 		List<MapBean> dataList = new ArrayList<MapBean>();
 		List<Param> pList = new ArrayList<Param>();
-		StringBuffer sql = new StringBuffer(
-				"SELECT T2.* FROM ANIMATION_INFORMATION T1 JOIN ANIMATION_RESOURCE T2 ON T1.ANIMATION_ID = T2.ANIMATION_ID "
-						+ "WHERE DATE_FORMAT(ANIMATION_BROADCAST_TIME, '%Y') >= ? AND DATE_FORMAT(ANIMATION_BROADCAST_TIME, '%Y') <= ? ");
 
-		pList.add(new Param(searchBean.getStartYear(), ColumnType.VARCHAR));
-		pList.add(new Param(searchBean.getEndYear(), ColumnType.VARCHAR));
+		StringBuffer sql = new StringBuffer(
+				"SELECT t2.* FROM ANIMATION_INFORMATION t1 LEFT JOIN ANIMATION_RESOURCE t2 "
+						+ "ON t1.ANIMATION_ID = t2.ANIMATION_ID WHERE 1 = 1 ");
 
 		if (!searchBean.getAnimation_type().equals("ALL")) {
 			sql.append(" AND ANIMATION_TYPE = ? ");
 			pList.add(new Param(searchBean.getAnimation_type(), ColumnType.VARCHAR));
+		}
+
+		if (!searchBean.getAnimation_source().equals("ALL")) {
+			sql.append(" AND ANIMATION_SOURCE = ? ");
+			pList.add(new Param(searchBean.getAnimation_source(), ColumnType.VARCHAR));
+		}
+
+		if (!searchBean.getIsBD().equals("ALL")) {
+			sql.append(" AND HAVE_BD_RESOURCE = ? ");
+			pList.add(new Param(searchBean.getIsBD(), ColumnType.VARCHAR));
+		}
+
+		if (searchBean.getYearRange() != null && !searchBean.getYearRange().equals("")) {
+			sql.append(
+					" AND DATE_FORMAT(ANIMATION_BROADCAST_TIME, '%Y') >= ? AND DATE_FORMAT(ANIMATION_BROADCAST_TIME, '%Y') <= ? ");
+			pList.add(new Param(searchBean.getYearRange().split(" - ")[0].replace("年", ""), ColumnType.VARCHAR));
+			pList.add(new Param(searchBean.getYearRange().split(" - ")[1].replace("年", ""), ColumnType.VARCHAR));
+		}
+
+		if (!searchBean.getDisk_name().equals("ALL")) {
+			sql.append(" AND t2.RESOURCE_ADDRESS = ? ");
+			pList.add(new Param(searchBean.getDisk_name(), ColumnType.VARCHAR));
 		}
 
 		if (searchBean.getAnimation_name() != null && searchBean.getAnimation_name().trim().length() > 0) {
@@ -133,7 +146,8 @@ public class SearchDao {
 			pList.add(new Param("%" + searchBean.getAnimation_name() + "%", ColumnType.VARCHAR));
 		}
 
-		sql.append(" ORDER BY ANIMATION_BROADCAST_TIME ");
+		sql.append(" ORDER BY DATE_FORMAT(t1.ANIMATION_BROADCAST_TIME, '%Y') , t1.ANIMATION_TYPE , t1.ANIMATION_BROADCAST_TIME, t2.RESOURCE_TYPE DESC , t2.RESOURCE_ADDRESS ");
+
 		dataList = DBTools.query(sql.toString(), pList);
 
 		return dataList;
