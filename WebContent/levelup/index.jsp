@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -12,6 +16,7 @@
 <link rel="stylesheet" href="./build/css/app.css" media="all" />
 <link rel="stylesheet" href="./build/css/themes/default.css" media="all"
 	id="skin" kit-skin />
+<!-- -->
 </head>
 
 <body class="kit-theme">
@@ -19,8 +24,8 @@
 		<div class="layui-header">
 			<div class="layui-logo">ANIMATION</div>
 			<!-- <div class="layui-logo kit-logo-mobile">K</div> -->
-			<ul class="layui-nav layui-layout-left kit-nav">
-				<!-- <li class="layui-nav-item"><a href="javascript:;">控制台</a></li>
+			<!--  <ul class="layui-nav layui-layout-left kit-nav">
+                <li class="layui-nav-item"><a href="javascript:;">控制台</a></li>
                 <li class="layui-nav-item"><a href="javascript:;">商品管理</a></li>
                 <li class="layui-nav-item"><a href="javascript:;" id="pay"><i class="fa fa-gratipay" aria-hidden="true"></i> 捐赠我</a></li>
                 <li class="layui-nav-item">
@@ -30,12 +35,13 @@
                         <dd><a href="javascript:;">消息管理</a></dd>
                         <dd><a href="javascript:;">授权管理</a></dd>
                     </dl>
-                </li> -->
-			</ul>
-			<ul class="layui-nav layui-layout-right kit-nav">
-				<li class="layui-nav-item" style="margin-right: 20px;"><a
-					href="javascript:;"> <i class="layui-icon">&#xe63f;</i> 皮肤
-				</a> <!--   </a> -->
+                </li>
+            </ul> -->
+			<ul class="layui-nav layui-layout-right kit-nav"
+				style="margin-right: 20px;">
+				<li class="layui-nav-item"><a href="javascript:;"> <i
+						class="layui-icon">&#xe63f;</i> 皮肤
+				</a> </a>
 					<dl class="layui-nav-child skin">
 						<dd>
 							<a href="javascript:;" data-skin="default"
@@ -63,7 +69,7 @@
 								class="layui-icon">&#xe658;</i> 枫叶红</a>
 						</dd>
 					</dl></li>
-				<!--  <li class="layui-nav-item">
+				<!-- <li class="layui-nav-item">
                     <a href="javascript:;">
                         <img src="http://m.zhengjinfan.cn/images/0.jpg" class="layui-nav-img"> Van
                     </a>
@@ -71,8 +77,8 @@
                         <dd><a href="javascript:;" kit-target data-options="{url:'basic.html',icon:'&#xe658;',title:'基本资料',id:'966'}"><span>基本资料</span></a></dd>
                         <dd><a href="javascript:;">安全设置</a></dd>
                     </dl>
-                </li>
-                <li class="layui-nav-item"><a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a></li> -->
+                </li> -->
+				<!-- <li class="layui-nav-item"><a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a></li> -->
 			</ul>
 		</div>
 
@@ -84,24 +90,24 @@
 				<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
 				<ul class="layui-nav layui-nav-tree" lay-filter="kitNavbar"
 					kit-navbar>
-
 					<li class="layui-nav-item layui-nav-itemed"><a class=""
-						href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span>查询</span></a>
+						href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span>
+								资源查询</span></a>
 						<dl class="layui-nav-child">
 							<dd>
-								<a href="javascript:;" data-url="http://localhost:8080/animation/toBasicSearch" data-title="按年查询"  kit-target >
-									<i class="layui-icon">&#xe6c6;</i><span>&nbsp;按年查询</span>
+								<a href="javascript:;"
+									data-url="${pageContext.request.contextPath}/toBasicSearch"
+									kit-target data-title="按年份查询"><i class="layui-icon">&#xe6c6;</i><span>&nbsp;按年份查询</span>
 								</a>
 							</dd>
 							<dd>
-								<a href="javascript:;" data-url="${pageContext.request.contextPath}/toBasicSearch" data-icon="fa-user"
-									 kit-target data-id='2'><i
-									class="fa fa-user" aria-hidden="true"></i><span>&nbsp;按名称查询</span></a>
+								<a href="javascript:;"
+									data-url="${pageContext.request.contextPath}/toBasicSearch"
+									kit-target data-title="按名称查询" data-id='2'><i
+									class="layui-icon">&#xe658;</i><span>&nbsp;按名称查询</span></a>
 							</dd>
-
 						</dl></li>
-
-					<li class="layui-nav-item layui-nav-itemed"><a class=""
+					<!-- <li class="layui-nav-item layui-nav-itemed"><a class=""
 						href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span>
 								基本元素</span></a>
 						<dl class="layui-nav-child">
@@ -131,7 +137,7 @@
 									data-options="{url:'https://www.baidu.com',icon:'&#xe658;',title:'百度一下',id:'5'}"><i
 									class="layui-icon">&#xe658;</i><span> 百度一下</span></a>
 							</dd>
-						</dl></li>
+						</dl></li> -->
 					<li class="layui-nav-item layui-nav-itemed"><a
 						href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span>
 								组件</span></a>
@@ -174,14 +180,14 @@
 			MIT license
 		</div>
 	</div>
-	<script type="text/javascript">
+	<!-- 	<script type="text/javascript">
 		var cnzz_protocol = (("https:" == document.location.protocol) ? " https://"
 				: " http://");
 		document
 				.write(unescape("%3Cspan id='cnzz_stat_icon_1264021086'%3E%3C/span%3E%3Cscript src='"
 						+ cnzz_protocol
 						+ "s22.cnzz.com/z_stat.php%3Fid%3D1264021086%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-	</script>
+	</script> -->
 	<script src="./plugins/layui/layui.js"></script>
 	<script>
 		var message;
