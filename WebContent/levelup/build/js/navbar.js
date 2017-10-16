@@ -166,7 +166,7 @@ layui.define(['layer', 'laytpl', 'element'], function(exports) {
                     '{{# }); }}',
                 ], //模板
                 _data = [];
-            var navbarLoadIndex = layer.load(2);
+            var navbarLoadIndex = layer.load(1);
             if (!that.hasElem())
                 return that;
             var _elem = that.getElem();

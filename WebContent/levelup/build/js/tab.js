@@ -20,7 +20,7 @@ layui.define(['jquery', 'element', 'nprogress', 'utils'], function(exports) {
     var Tab = function() {
         this.config = {
             elem: undefined,
-            mainUrl: 'main.html',
+            mainUrl: '',//main.html
             renderType: 'iframe',
             openWait: true
         };
@@ -91,21 +91,21 @@ layui.define(['jquery', 'element', 'nprogress', 'utils'], function(exports) {
             var tpl = [
                     '<div class="layui-tab layui-tab-card kit-tab" lay-filter="' + that._filter + '">',
                     '<ul class="layui-tab-title">',
-                    '<li class="layui-this" lay-id="-1" data-url="' + _config.mainUrl + '"><i class="layui-icon">&#xe68e;</i> 控制面板</li>',
+                   // '<li class="layui-this" lay-id="-1" data-url="' + _config.mainUrl + '"><i class="layui-icon">&#xe68e;</i> 控制面板</li>',
                     '</ul>',
-                    '<div class="kit-tab-tool">操作&nbsp;<i class="fa fa-caret-down"></i></div>',
+                    '<div class="kit-tab-tool noselect">操作&nbsp;<i class="fa fa-caret-down"></i></div>',
                     '<div class="kit-tab-tool-body layui-anim layui-anim-upbit">',
                     '<ul>',
-                    '<li class="kit-item" data-target="refresh">刷新当前选项卡</li>',
-                    '<li class="kit-line"></li>',
-                    '<li class="kit-item" data-target="closeCurrent">关闭当前选项卡</li>',
-                    '<li class="kit-item" data-target="closeOther">关闭其他选项卡</li>',
-                    '<li class="kit-line"></li>',
-                    '<li class="kit-item" data-target="closeAll">关闭所有选项卡</li>',
+                    '<li class="kit-item noselect" data-target="refresh">刷新当前选项卡</li>',
+                    '<li class="kit-line noselect"></li>',
+                    '<li class="kit-item noselect" data-target="closeCurrent">关闭当前选项卡</li>',
+                    '<li class="kit-item noselect" data-target="closeOther">关闭其他选项卡</li>',
+                    '<li class="kit-line noselect"></li>',
+                    '<li class="kit-item noselect" data-target="closeAll">关闭所有选项卡</li>',
                     '</ul>',
                     '</div>',
                     '<div class="layui-tab-content">',
-                    '<div class="layui-tab-item layui-show" lay-item-id="-1">{{content}}</div>',
+                    //'<div class="layui-tab-item layui-show" lay-item-id="-1">{{content}}</div>',
                     '</div>',
                     '</div>'
                 ],
@@ -120,6 +120,7 @@ layui.define(['jquery', 'element', 'nprogress', 'utils'], function(exports) {
             }
             //渲染
             $(_config.elem).html(_htm);
+            
             that._title = $('.kit-tab ul.layui-tab-title');
             that._content = $('.kit-tab div.layui-tab-content');
             var _tool = $('.kit-tab-tool'),
@@ -178,7 +179,7 @@ layui.define(['jquery', 'element', 'nprogress', 'utils'], function(exports) {
             that.winResize();
         },
         load: function() {
-            return layer.load(0, { shade: [0.3, '#333'] });
+            return layer.load(1, { shade: [0.3, '#333'] });
         },
         closeLoad: function(index) {
             setTimeout(function() {
